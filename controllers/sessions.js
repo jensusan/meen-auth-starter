@@ -7,7 +7,6 @@ const User = require('../models/user.js');
 // New (login page)
 
 // Delete (logout route)
-// Delete (logout route)
 sessionsRouter.delete('/', (req, res) => {
     req.session.destroy((error) => {
         res.redirect('/');

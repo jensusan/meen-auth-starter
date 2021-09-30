@@ -33,9 +33,9 @@ app.use('/users', userController);
 const sessionsController = require('./controllers/sessions');
 app.use('/sessions', sessionsController);
 
-// Temporary root route. Please remove me when you add views:
+//index
 app.get("/", (req, res) => {
-    res.send("Root route");
+    res.render('index.ejs')
   });
 
 // Delete (logout route)
