@@ -4,6 +4,7 @@ const app = express();
 require('dotenv').config();
 const mongoose = require('mongoose');
 const session = require('express-session');
+const methodOverride = require('method-override');
 
 // Database Configuration
 mongoose.connect(process.env.DATABASE_URL, {
@@ -25,6 +26,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
+app.use(methodOverride('_method'));
 
 // Routes / Controllers
 const userController = require('./controllers/users');
@@ -35,7 +37,9 @@ app.use('/sessions', sessionsController);
 
 //index
 app.get("/", (req, res) => {
-    res.render('index.ejs')
+    res.render('index.ejs', {
+      currentUser: req.session.currentUser
+    })
   });
 
 // Delete (logout route)
